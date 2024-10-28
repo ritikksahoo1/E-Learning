@@ -130,6 +130,13 @@ p {
     margin-top: 40px;
     text-align: center;
 }
+#role {
+    margin: 10px 0;
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
 .form__container h2 {
     color: rgb(6, 30, 242);

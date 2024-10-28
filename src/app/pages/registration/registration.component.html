@@ -51,6 +51,11 @@
     <div class="form__container">
       <h2>STUDENT REGISTRATION PAGE</h2>
       <form id="registrationForm">
+        <label for="role">Select Role</label>
+        <select id="role" name="role" required>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+        </select>
         <input type="text" id="fullname" placeholder="Full Name" required />
         <input type="password" id="password" placeholder="Password" required />
         <input type="text" id="address" placeholder="Address" required />

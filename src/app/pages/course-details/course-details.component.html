@@ -46,6 +46,16 @@
 </div>
 
 
+<div class="container">
+  <h1>Popular Topics to Explore</h1>
+  <div class="topics">
+    <div class="box" *ngFor="let topic of topics">
+      <img [src]="topic.logo" alt="{{ topic.name }} Logo">
+      <h3>{{ topic.name }}</h3>
+    </div>
+  </div>
+</div>
+
 
 
   <div class="courses-section">
@@ -99,6 +109,19 @@
       </p>
     </div>
   </div>
+
+
+  <div class="image-container">
+    <img src="https://i0.wp.com/freedom.to/blog/wp-content/uploads/2022/09/pexels-charlotte-may-5965839.jpeg?fit=1024%2C682&ssl=1" alt="Background Image" class="background-image" />
+    <div class="overlay">
+      <h1>Share your feedback here!</h1>
+      <p>Tell us about your experience or suggestions for improvement.</p>
+      <p>We’d love to hear from you!</p>
+      <!-- Share Your Feedback Button -->
+<button class="feedback-button" (click)="navigateToFeedback()">Share Your Feedback</button>
+    </div>
+  </div>
+  
   <footer class="unique-footer">
     <div class="footer-container">
         <!-- About Section -->

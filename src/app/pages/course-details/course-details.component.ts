@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
@@ -10,7 +11,16 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./course-details.component.css'] 
 })
 export class CourseDetailsComponent {
-  
+  topics = [
+    { name: 'Angular', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png' },
+    { name: 'SpringBoot', logo: 'https://pbs.twimg.com/profile_images/1235868806079057921/fTL08u_H_400x400.png' },
+    { name: 'Java', logo: 'https://cdn-icons-png.flaticon.com/512/226/226777.png' },
+    { name: 'MySQL', logo: 'https://banner2.cleanpng.com/20180411/wre/avf0mauoj.webp' },
+    { name: 'React', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg' },
+    { name: 'Node.js', logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg' },
+    { name: 'AWS', logo: 'https://saviynt.com/hubfs/aws.png' },
+    { name: 'Azure', logo: 'https://www.business-central-app.it/wp-content/uploads/2021/12/logo-azure.png' }
+  ];
   searchTerm: string = '';
   
   
@@ -271,5 +281,10 @@ export class CourseDetailsComponent {
 
   hideDetails(course: any) {
     course.showDetails = false;
+  }
+  constructor(private router: Router) { }
+
+  navigateToFeedback() {
+    this.router.navigate(['/course-feedback']);
   }
 }

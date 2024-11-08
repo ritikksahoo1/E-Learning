@@ -13,8 +13,11 @@
   <h1 class="page-title">Explore Our Courses</h1>
   <input type="text" class="search-bar" placeholder="Search for a course..." [(ngModel)]="searchTerm" />
 
+  <!-- Course Cards -->
   <div class="courses-container">
-    <div *ngFor="let course of filteredCourses()" class="course-card" (mouseenter)="showDetails(course)" (mouseleave)="hideDetails(course)">
+    <div *ngFor="let course of courses" class="course-card" 
+         (mouseenter)="showDetails(course)" (mouseleave)="hideDetails(course)">
+      
       <img [src]="course.image" [alt]="course.title" class="course-image" />
       <div class="course-content" *ngIf="!course.showDetails">
         <h2 class="course-title">{{ course.title }}</h2>
@@ -22,39 +25,58 @@
         <p class="course-description">{{ course.description }}</p>
         <p class="course-availability">Availability: {{ course.availability }}</p>
       </div>
+      
       <div class="course-details" *ngIf="course.showDetails">
         <p><strong>Duration:</strong> {{ course.duration }}</p>
         <ul class="course-topics">
-    <li *ngFor="let topic of course.topics">{{ topic }}</li>
-  </ul>
+          <li *ngFor="let topic of course.topics">{{ topic }}</li>
+        </ul>
         <p><strong>Author:</strong> {{ course.author }}</p>
-
-  <button class="get-started-button" (click)="course.showEnroll = true">
-    Get Started
-  </button>
-  <button class="enroll-now-button" *ngIf="course.showEnroll" (click)="course.showSuccess = true; course.showEnroll = false">
-    Enroll Now
-  </button>
-  <div *ngIf="course.showSuccess" class="success-message">
-    You have enrolled successfully!
-  </div>
-
-
+  
+        <button class="get-started-button" (click)="showEnroll(course)">Get Started</button>
+        
+        <button class="enroll-now-button" *ngIf="course.showEnroll" (click)="enrollCourse(course)">
+          Enroll Now
+        </button>
+        
+        <div *ngIf="course.showSuccess" class="success-message">
+          You have enrolled successfully!
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
+  <!-- Overlay Page for Course Details -->
+<div *ngIf="selectedCourse?.showOverlay" class="course-overlay">
+  <button class="close-button" (click)="closeOverlay()">&#10005;</button>
+  <div class="overlay-content">
+    <h2>{{ selectedCourse.title }} - Details & Schedule</h2>
+    <p><strong>Duration:</strong> {{ selectedCourse.duration }}</p>
+    <p><strong>Author:</strong> {{ selectedCourse.author }}</p>
+    
+    <h3>Course Schedule</h3>
+    <!-- Course schedule table -->
+    <table class="course-table">
+      <tr>
+        <th>Week Number</th>
+        <th>Course Module</th>
+        <th>Learning Hours</th>
+        <th>Assignments</th>
+      </tr>
+      <tr *ngFor="let week of getWeeks(selectedCourse)">
+        <td>{{ week.weekNumber }}</td>
+        <td>{{ week.module }}</td>
+        <td>{{ week.learningHours }} hrs</td>
+        <td>{{ week.assignments }}</td>
+      </tr>
+    </table>
 
-
-<div class="container">
-  <h1>Popular Topics to Explore</h1>
-  <div class="topics">
-    <div class="box" *ngFor="let topic of topics">
-      <img [src]="topic.logo" alt="{{ topic.name }} Logo">
-      <h3>{{ topic.name }}</h3>
-    </div>
+    <p class="course-update-note"><strong>We will send updates regarding the course through email.</strong></p>
+    <img src="https://www.techstack.in/images/web-development-certificate.webp" alt="Certificate Sample" class="certificate-image" />
   </div>
 </div>
+
+  
 
 
 

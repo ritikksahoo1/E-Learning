@@ -33,7 +33,7 @@ export class CourseDetailsComponent {
       availability: 'Available',
       duration: '3 months',
       author: 'John Doe',
-      description: 'Learn how to build websites and web applications using HTML, CSS, and JavaScript. This course covers all the fundamentals of front-end and back-end development.',
+      description: 'Learn how to build websites and web applications using HTML, CSS, and JavaScript.',
       topics: [
         'Introduction to HTML & CSS',
         'JavaScript Fundamentals',
@@ -41,10 +41,17 @@ export class CourseDetailsComponent {
         'Backend Development with Node.js',
         'Web Deployment and Hosting'
       ],
+      schedule: [
+        'Week 1: Introduction to HTML & CSS',
+        'Week 2: JavaScript Basics',
+        'Week 3: Responsive Design',
+        'Week 4: Node.js & Backend Development',
+        'Week 5: Final Project'
+      ],
       showDetails: false,
       showEnroll: false,
-      showSuccess: false
-      
+      showSuccess: false,
+      showOverlay: false
     },
     {
       title: 'Data Science',
@@ -269,10 +276,35 @@ export class CourseDetailsComponent {
     }
   ];
 
-  filteredCourses() {
-    return this.courses.filter(course =>
-      course.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+  selectedCourse: any = null;
+
+  // Method to generate weeks dynamically based on course duration
+  getWeeks(course: any) {
+    const weeks = [];
+    let weekCount = 12; // For a 3-month course, assume 12 weeks
+
+    for (let i = 1; i <= weekCount; i++) {
+      weeks.push({
+        weekNumber: i,
+        module: `Module ${i}`,
+        learningHours: 3, // Example: 3 hours per week
+        assignments: `Assignment ${i}`
+      });
+    }
+
+    return weeks;
+  }
+
+  showOverlay(course: any) {
+    this.selectedCourse = course;
+    this.selectedCourse.showOverlay = true;
+  }
+
+  closeOverlay() {
+    if (this.selectedCourse) {
+      this.selectedCourse.showOverlay = false;
+      this.selectedCourse = null;
+    }
   }
 
   showDetails(course: any) {
@@ -282,9 +314,21 @@ export class CourseDetailsComponent {
   hideDetails(course: any) {
     course.showDetails = false;
   }
+
+  showEnroll(course: any) {
+    course.showEnroll = true;
+  }
+
+  enrollCourse(course: any) {
+    course.showSuccess = true;
+    course.showEnroll = false;
+    this.showOverlay(course);  // Show overlay after successful enrollment
+  }  
   constructor(private router: Router) { }
 
   navigateToFeedback() {
     this.router.navigate(['/course-feedback']);
   }
-}
+
+  }
+

@@ -8,6 +8,7 @@ import { CourseComponent } from './pages/course/course.component';
 import { CourseFeedbackComponent } from './pages/course-feedback/course-feedback.component';
 import { CourseViewComponent } from './pages/course-view/course-view.component';
 
+
 export const routes: Routes = [
     {
         path: '',

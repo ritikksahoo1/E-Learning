@@ -77,6 +77,18 @@
 </div>
 
   
+<div class="explore-topics">
+  <h2>Popular Topics to Explore</h2>
+  <div class="topics-container">
+    <div
+      class="topic-box"
+      *ngFor="let topic of topics"
+    >
+      <img [src]="topic.logo" [alt]="topic.name" />
+      <p>{{ topic.name }}</p>
+    </div>
+  </div>
+</div>
 
 
 

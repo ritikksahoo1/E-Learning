@@ -11,15 +11,65 @@ import { Router } from '@angular/router';
   styleUrls: ['./course-details.component.css'] 
 })
 export class CourseDetailsComponent {
+  
   topics = [
-    { name: 'Angular', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png' },
-    { name: 'SpringBoot', logo: 'https://pbs.twimg.com/profile_images/1235868806079057921/fTL08u_H_400x400.png' },
-    { name: 'Java', logo: 'https://cdn-icons-png.flaticon.com/512/226/226777.png' },
-    { name: 'MySQL', logo: 'https://banner2.cleanpng.com/20180411/wre/avf0mauoj.webp' },
-    { name: 'React', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg' },
-    { name: 'Node.js', logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg' },
-    { name: 'AWS', logo: 'https://saviynt.com/hubfs/aws.png' },
-    { name: 'Azure', logo: 'https://www.business-central-app.it/wp-content/uploads/2021/12/logo-azure.png' }
+    {
+      name: 'Angular',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
+    },
+    {
+      name: 'SpringBoot',
+      logo: 'https://pbs.twimg.com/profile_images/1235868806079057921/fTL08u_H_400x400.png',
+    },
+    {
+      name: 'Java',
+      logo: 'https://cdn-icons-png.flaticon.com/512/226/226777.png',
+    },
+    {
+      name: 'MySQL',
+      logo: 'https://banner2.cleanpng.com/20180411/wre/avf0mauoj.webp',
+    },
+    {
+      name: 'React',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+    },
+    {
+      name: 'Node.js',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
+    },
+    {
+      name: 'AWS',
+      logo: 'https://saviynt.com/hubfs/aws.png',
+    },
+    {
+      name: 'Azure',
+      logo: 'https://www.business-central-app.it/wp-content/uploads/2021/12/logo-azure.png',
+    },
+    {
+      name:'Python',
+      logo: 'https://i0.wp.com/junilearning.com/wp-content/uploads/2020/06/python-programming-language.webp?fit=800%2C800&ssl=1',
+    },
+    {
+      name: 'Flutter',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png',
+    },
+    {
+      name: 'Kubernetes',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg',
+    },
+    {
+      name: 'Docker',
+      logo: 'https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png',
+    },
+    {
+      name: 'GitHub',
+      logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+    },
+    {
+      name: 'TypeScript',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
+    }
+    
   ];
   searchTerm: string = '';
   
@@ -331,4 +381,3 @@ export class CourseDetailsComponent {
   }
 
   }
-

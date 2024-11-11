@@ -1,0 +1,43 @@
+<!-- course-view.component.html -->
+<div *ngIf="course">
+  <div class="course-header">
+    <img [src]="course.imageUrl" alt="Course Image" />
+    <div class="course-details">
+      <h2>{{ course.name }}</h2>
+      <p>{{ course.description }}</p>
+      <p><strong>Author:</strong> {{ course.author }}</p>
+      <p><strong>Duration:</strong> {{ course.duration }}</p>
+
+      <div class="rating">
+        <span (click)="onRatingChange(1)">★</span>
+        <span (click)="onRatingChange(2)">★</span>
+        <span (click)="onRatingChange(3)">★</span>
+        <span (click)="onRatingChange(4)">★</span>
+        <span (click)="onRatingChange(5)">★</span>
+      </div>
+
+      <div *ngIf="showFeedbackOverlay" class="overlay">
+        <div class="overlay-content">
+          <h3>Provide Your Feedback</h3>
+          <input
+            type="text"
+            placeholder="Enter feedback"
+            class="feedback-input"
+          />
+          <button (click)="closeFeedbackOverlay()">Close</button>
+        </div>
+      </div>
+
+      <h3>Modules</h3>
+      <ul>
+        <li *ngFor="let module of course.modules">
+          {{ module.title }} - {{ module.time }}
+        </li>
+      </ul>
+
+      <div class="certificate">
+        <img [src]="course.sampleCertificateUrl" alt="Sample Certificate" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -327,6 +327,7 @@ export class CourseDetailsComponent {
   ];
 
   selectedCourse: any = null;
+  
 
   // Method to generate weeks dynamically based on course duration
   getWeeks(course: any) {
@@ -375,6 +376,10 @@ export class CourseDetailsComponent {
     this.showOverlay(course);  // Show overlay after successful enrollment
   }  
   constructor(private router: Router) { }
+
+  goToCourse() {
+    this.router.navigate(['/course-view']);
+  }
 
   navigateToFeedback() {
     this.router.navigate(['/course-feedback']);

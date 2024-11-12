@@ -1,1 +1,283 @@
+/* Container styling */
+.course-card {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Left Section: Image */
+  .left-section {
+    flex: 1;
+    max-width: 300px;
+  }
+  
+  .left-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Right Section: Course details */
+  .right-section {
+    flex: 2;
+    padding-left: 20px;
+  }
+  
+  .course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .course-header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .badge {
+    background-color: #2196f3;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .rating {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .rating span {
+    color: #ff9800;
+    font-size: 16px;
+  }
+  
+  .rating a {
+    margin-left: 10px;
+    color: #2196f3;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Details styling */
+  .author,
+  .date,
+  .duration {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+    font-weight: 600;
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  /* Hover effects */
+  .course-card:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+  }
 
+  /* Star Rating Section */
+.star-rating {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .star {
+    font-size: 30px;
+    color: grey;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .star.filled {
+    color: gold;
+  }
+  
+  /* Feedback Overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Enable scrolling */
+    padding: 20px;
+  }
+  
+  .overlay.show {
+    display: flex;
+  }
+  
+  .feedback-form {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 500px; /* Max width for larger screens */
+    max-height: 90vh; /* Limit height to prevent overflow */
+    overflow-y: auto; /* Scroll inside the form if content overflows */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Close Button */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .feedback-form h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .feedback-options button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+  }
+  
+  textarea,
+  input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* Feedback Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Enable scrolling for overlay */
+    padding: 20px;
+    z-index: 1000;
+  }
+  
+  .overlay.show {
+    display: flex;
+  }
+  
+  .feedback-form {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh; /* Ensure form fits in viewport */
+    overflow-y: auto; /* Enable scrolling within form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Close Button */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .close-btn:hover {
+    color: #000;
+  }
+  
+  /* For feedback options */
+  .feedback-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  /* Feedback Options Styling */
+.feedback-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+  
+  .feedback-options button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .feedback-options button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Selected state styling */
+  .feedback-options .selected {
+    background-color: #4CAF50; /* Change this to your preferred selected color */
+    color: #fff;
+    border: 1px solid #4CAF50;
+  }
+  

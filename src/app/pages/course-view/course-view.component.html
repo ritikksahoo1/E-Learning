@@ -1,1 +1,63 @@
-<p>course-view works!</p>
+<div class="course-card" *ngIf="course_info">
+  <div class="left-section">
+    <img [src]="course_info?.image" alt="Course Image">
+  </div>
+  <div class="right-section">
+    <div class="course-header">
+      <h2>{{ course_info?.title }}</h2>
+      <div class="status">
+        <span class="badge">{{ course_info?.availability }}</span>
+        <div class="rating">
+          <span>⭐ ⭐ ⭐ ⭐ ⭐</span>
+          <a href="#">Rate this course</a>
+        </div>
+      </div>
+    </div>
+    <p class="author">Instructor: {{ course_info?.author }}</p>
+    <p class="date">Start Date: {{ course_info?.startDate }} | End Date: {{ course_info?.endDate }}</p>
+    <p class="duration">Duration: {{ course_info?.duration }}</p>
+    <p class="description">{{ course_info?.description }}</p>
+  </div>
+</div>
+
+<div class="course-container">
+  <!-- Star Rating Section -->
+  <div class="star-rating">
+    <span
+      class="star"
+      *ngFor="let star of stars; let i = index"
+      [ngClass]="{ 'filled': i < selectedRating }"
+      (click)="selectRating(i + 1)"
+    >
+      &#9733;
+    </span>
+  </div>
+</div>
+
+<!-- Feedback Overlay -->
+<div id="feedback-overlay" class="overlay" [class.show]="isFeedbackVisible">
+  <div class="feedback-form">
+    <button class="close-btn" (click)="closeOverlay()">&#x2715;</button>
+    <h3>Very Good</h3>
+    <div class="stars">
+      <span class="star" *ngFor="let star of stars; let i = index" [ngClass]="{ 'filled': i < selectedRating }">
+        &#9733;
+      </span>
+    </div>
+    <p>What did you enjoy most? (select at least 2 fields)</p>
+    <div class="feedback-options">
+      <button
+        *ngFor="let option of feedbackOptions"
+        (click)="toggleOption(option)"
+        [ngClass]="{ 'selected': selectedOptions.includes(option) }"
+      >
+        {{ option }}
+      </button>
+    </div>
+    <input type="text" placeholder="Highlight your learning experience..." />
+    <textarea placeholder="What did you like?..."></textarea>
+    <button class="submit-btn">Submit Feedback</button>
+  </div>
+</div>
+
+

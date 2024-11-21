@@ -31,8 +31,8 @@
         <ul class="course-topics">
           <li *ngFor="let topic of course.topics">{{ topic }}</li>
         </ul>
-        <p><strong>Author:</strong> {{ course.author }}</p>
-  
+        <p><strong>Author:</strong> {{ course.author }}</p> 
+
         <button class="get-started-button" (click)="showEnroll(course)">Get Started</button>
         
         <button class="enroll-now-button" *ngIf="course.showEnroll" (click)="enrollCourse(course)">
@@ -53,6 +53,7 @@
     <h2>{{ selectedCourse.title }} - Details & Schedule</h2>
     <p><strong>Duration:</strong> {{ selectedCourse.duration }}</p>
     <p><strong>Author:</strong> {{ selectedCourse.author }}</p>
+    
     
     <h3>Course Schedule</h3>
     <!-- Course schedule table -->

@@ -1,4 +1,5 @@
 import { provideRouter, RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { CourseDetailsComponent } from './pages/course-details/course-details.component';
@@ -7,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CourseComponent } from './pages/course/course.component';
 import { CourseFeedbackComponent } from './pages/course-feedback/course-feedback.component';
 import { CourseViewComponent } from './pages/course-view/course-view.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 export const routes: Routes = [
@@ -46,6 +48,10 @@ export const routes: Routes = [
     {
         path: 'course-view',
         component:CourseViewComponent
+    },
+    {
+        path: 'about',
+        component:AboutComponent
     },
     {
         path: '**',

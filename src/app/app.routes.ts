@@ -9,6 +9,7 @@ import { CourseComponent } from './pages/course/course.component';
 import { CourseFeedbackComponent } from './pages/course-feedback/course-feedback.component';
 import { CourseViewComponent } from './pages/course-view/course-view.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 
 export const routes: Routes = [
@@ -52,6 +53,10 @@ export const routes: Routes = [
     {
         path: 'about',
         component:AboutComponent
+    },
+  {
+        path: 'contact',
+        component:ContactComponent
     },
     {
         path: '**',

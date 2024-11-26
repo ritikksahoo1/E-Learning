@@ -206,7 +206,8 @@ export class CourseDetailsComponent {
           title: 'Deep Learning with TensorFlow',
           url: 'https://youtu.be/tPYj3fFJGjk',
           description: 'Learn the fundamentals of deep learning and neural networks with TensorFlow. This video walks you through creating deep learning models for image classification and more. It’s ideal for anyone interested in diving deeper into AI and machine learning.'
-      }
+      },
+      
   ],
   
       showDetails: false,

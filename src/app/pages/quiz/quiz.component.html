@@ -1,0 +1,18 @@
+<div class="quiz-container">
+  <h2>Quiz for {{ courseTitle }}</h2>
+
+  <div *ngIf="questions.length > 0; else noQuestions">
+    <div *ngFor="let question of questions; let i = index" class="question-card">
+      <p><strong>Q{{ i + 1 }}: {{ question.question }}</strong></p>
+      <div *ngFor="let option of question.options" class="option">
+        <label>
+          <input type="radio" [name]="'question-' + i" /> {{ option }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noQuestions>
+    <p>No questions available for this course.</p>
+  </ng-template>
+</div>

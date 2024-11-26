@@ -9,7 +9,9 @@ import { CourseComponent } from './pages/course/course.component';
 import { CourseFeedbackComponent } from './pages/course-feedback/course-feedback.component';
 import { CourseViewComponent } from './pages/course-view/course-view.component';
 import { AboutComponent } from './pages/about/about.component';
+import { AdminComponent } from './pages/admin/admin.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { QuizComponent } from './pages/quiz/quiz.component';
 
 
 export const routes: Routes = [
@@ -54,10 +56,19 @@ export const routes: Routes = [
         path: 'about',
         component:AboutComponent
     },
-  {
+    {
+        path: 'admin',
+        component:AdminComponent
+    },
+    {
         path: 'contact',
         component:ContactComponent
     },
+    {
+        path: 'quiz',
+        component:QuizComponent
+    },
+    { path: 'quiz/:courseTitle', component: QuizComponent }, 
     {
         path: '**',
         redirectTo: 'home'

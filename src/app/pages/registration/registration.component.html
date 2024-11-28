@@ -94,7 +94,14 @@
           placeholder="course"
           formControlName="course"
         />
-      
+        @if (showOtpSection()) {
+          <div class="otp__container">
+            <p>Please enter the OTP sent to your email to verify your account:</p>
+            <input type="text" id="otp" placeholder="Enter OTP" formControlName="otp" />
+            <button (click)="verifyOtp()">Verify</button>
+          </div>
+        }
+       
         <input type="submit" value="Submit"  />
       </form>
       

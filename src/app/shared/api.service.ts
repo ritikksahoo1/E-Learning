@@ -19,18 +19,37 @@ export class ApiService {
   }
 
   login(userDetails: LoginDetails) {
-    const url = this.api_url + '/loginUser';
+    const url = this.api_url + '/api/users/login';
     return this.http.post(url, userDetails)
   }
 
   register(registerDetails: RegisterDetails) {
     const url = this.api_url + '/api/users/register';
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token()}`,
-    });
-    return this.http.post(url, registerDetails,{headers});
+    // const headers = new HttpHeaders({
+    //   Authorization: `Bearer ${this.token()}`,
+    // });
+    return this.http.post(url, registerDetails);
   }
 
+  verifyOtp(data:{email:string,otp:string}){
+    let url = this.api_url+'/api/users/verify-otp';
+    url += `?email=${data.email}&otp=${data.otp}`;
+    return this.http.post(url,'');
+  }
+  forgotPassword(data:{email:string}){
+    let url = this.api_url+'/api/users/reset-password-request';
+    return this.http.post(url,data);
+  }
+
+  enrolled(id:number,email: string){
+    let url = this.api_url+`/api/courses/${id}/enroll?email=${email}`;
+    return this.http.post(url,'');
+  }
+
+  getCourses(){
+    const url = this.api_url+'/api/courses/getAllCourses'
+    return this.http.get(url);
+  }
 }
 export interface LoginDetails {
   userId: string;

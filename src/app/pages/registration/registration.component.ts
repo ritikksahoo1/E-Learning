@@ -1,6 +1,6 @@
-import { Component, HostListener, AfterViewInit } from '@angular/core';
+import { Component, HostListener, AfterViewInit, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ApiService, RegisterDetails } from '../../shared/api.service';
 
 
@@ -16,10 +16,10 @@ export class RegistrationComponent implements AfterViewInit {
   private currentSlide: number = 0;
   private slides!: NodeListOf<HTMLElement>; // Use definite assignment assertion
   private totalSlides: number = 0; // Initialize to zero
-
+  showOtpSection = signal<boolean>(false);
   registrationForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(private fb: FormBuilder, private apiService: ApiService,private router: Router) {
     this.registrationForm = this.fb.group({
       role: ['student', Validators.required], // Default to 'student'
       fullName: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,7 +28,8 @@ export class RegistrationComponent implements AfterViewInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
       course: ['', Validators.required],
-      date: ['', Validators.required],
+      date: ['', ],
+      otp: [''],
     });
   }
 
@@ -107,21 +108,47 @@ export class RegistrationComponent implements AfterViewInit {
     console.log('Form Submitted:', this.registrationForm.value);
 
     if (this.registrationForm.valid) {
-      const payload: RegisterDetails = {
-        email: this.registrationForm.value.email,
-        fullName: this.registrationForm.value.fullName,
-        password: this.registrationForm.value.password,
-        date: this.registrationForm.value.date,
-        address: this.registrationForm.value.address,
-        course: this.registrationForm.value.course,
-        phone: this.registrationForm.value.phone,
-        role: this.registrationForm.value.role,
-      }
-      this.apiService.register(payload).subscribe(response => {
-        console.log(response);
-      }, err => { console.log("Error occurred ", err) });
+      // const payload: RegisterDetails = {
+      //   email: this.registrationForm.value.email,
+      //   fullName: this.registrationForm.value.fullName,
+      //   password: this.registrationForm.value.password,
+      //   date: this.registrationForm.value.date,
+      //   address: this.registrationForm.value.address,
+      //   course: this.registrationForm.value.course,
+      //   phone: this.registrationForm.value.phone,
+      //   role: this.registrationForm.value.role,
+      // }
+      // this.apiService.register(payload).subscribe(response => {
+      //   console.log(response);
+        this.showOtpSection.set(true);
+      // }, err => { 
+      //   console.log("Error occurred ", err);
+      //   this.showOtpSection.set(false);
+      // });
     } else {
       console.error('Form is invalid');
     }
   }
+
+  verifyOtp() {
+    const email = this.registrationForm.value.email;
+    const otp = this.registrationForm.value.otp;
+    if (otp && otp !='') { // Replace with actual OTP logic
+      const payload = {
+        email: email,
+        otp: otp
+      }
+      this.apiService.verifyOtp(payload).subscribe(response => {
+          console.log(response);
+          this.showOtpSection.set(true);
+          this.router.navigate(['login']);
+        }, err => { 
+          console.log("Error occurred ", err);
+          this.showOtpSection.set(false);
+
+        });
+    } else {
+      alert('Invalid OTP, please try again.');
+    }
+  }
 }

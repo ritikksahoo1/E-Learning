@@ -74,9 +74,11 @@ export class CourseDetailsComponent {
   ];
   searchTerm: string = '';
   
+  courseList = [];
   
   courses = [
     {
+      id:1,
       title: 'Web Development',
       image: 'https://miro.medium.com/v2/resize:fit:1200/0*M4bxiCIjcTK-2Xr6.jpeg',
       startDate: '2024-01-10',
@@ -150,6 +152,7 @@ export class CourseDetailsComponent {
       showOverlay: false
     },
     {
+      id:2,
       title: 'Data Science',
       image: 'https://www.naukri.com/campus/career-guidance/wp-content/uploads/2023/11/what-is-data-science.jpg',
       startDate: '2024-02-15',
@@ -215,6 +218,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:3,
       title: 'Mobile App Development',
       image: 'https://img.freepik.com/free-vector/app-development-banner_33099-1720.jpg',
       startDate: '2024-03-01',
@@ -277,6 +281,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:4,
       title: 'Cloud Computing',
       image: 'https://theicttrends.com/wp-content/uploads/2023/01/4-Pillars-of-Cloud-Computing-1.jpg',
       startDate: '2024-04-10',
@@ -340,6 +345,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:5,
       title: 'AI & Machine Learning',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSWSdD-C1RFUUoC0nR-3ZAo9HR0xBqOs146g&s',
       startDate: '2024-05-20',
@@ -402,6 +408,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:6,
       title: 'Cybersecurity',
       image: 'https://senlainc.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0-2560%D1%851600.jpg.webp',
       startDate: '2024-06-01',
@@ -465,6 +472,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:7,
       title: 'Blockchain Payments',
       image: 'https://digitalasset.intuit.com/content/dam/intuit/sbseg/en_us/Blog/Photography/Stock/blockchain-payments-faster-secure-us-en.png',
       startDate: '2024-01-01',
@@ -528,6 +536,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:8,
       title: 'UI/UX Design',
       image: 'https://img-c.udemycdn.com/course/750x422/531148_b0a2_4.jpg',
       startDate: '2024-02-01',
@@ -589,6 +598,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:9,
       title: 'DevOps Engineering',
       image: 'https://www.skillreactor.io/blog/wp-content/uploads/2024/03/DevOps-Engineer.webp',
       startDate: '2024-03-01',
@@ -651,6 +661,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:10,
       title: 'Game Development',
       image: 'https://www.appstudio.ca/blog/wp-content/uploads/2021/09/Cost-of-Game-Development.jpeg',
       startDate: '2024-04-01',
@@ -713,6 +724,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:11,
       title: 'Figma',
       image: 'https://media.licdn.com/dms/image/C4D12AQHTWmXtImF2sw/article-cover_image-shrink_720_1280/0/1578556490672?e=2147483647&v=beta&t=GUbMSYJ4ekAJkRsZoFYWOjV7v47x0wUFZsHTFRrg5pM',
       startDate: '2024-05-01',
@@ -772,6 +784,7 @@ export class CourseDetailsComponent {
       showSuccess: false
     },
     {
+      id:12,
       title: 'Artificial Intelligence and Data Science (AIDS)',
       image: 'https://assets.thehansindia.com/h-upload/2022/04/23/1600x960_1288605-artificial-intelligence.webp',
       startDate: '2024-06-01',
@@ -834,6 +847,17 @@ export class CourseDetailsComponent {
   ];
   progress: number[] = [0, 0, 0, 0, 0];
   selectedCourse: any = null;
+
+  constructor(private router: Router, private service: ApiService) { }
+
+  ngOnInit(){
+    this.service.getCourses().subscribe((res:any) =>{
+      this.courseList = res;
+    },err =>{
+      console.log("Error while getting course");
+    })
+  }
+
   updateProgress(videoIndex: number): void {
     this.progress[videoIndex] = 100;
   }
@@ -887,8 +911,13 @@ export class CourseDetailsComponent {
     course.showSuccess = true;
     course.showEnroll = false;
     this.showOverlay(course);  // Show overlay after successful enrollment
+    console.log(course)
+    this.service.enrolled(course.id,"user@gmail.com").subscribe(res=>{
+      console.log("Enrolled successfully");
+    }, err => {
+      console.log(" Error occurred while enroll process");
+    });
   }  
-  constructor(private router: Router, private service: ApiService) { }
 
   goToCourse() {
     this.service.updateSelectedCourse(this.selectedCourse);

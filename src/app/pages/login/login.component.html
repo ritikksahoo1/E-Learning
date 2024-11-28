@@ -25,19 +25,22 @@
     <div class="container">
         <div class="logo"></div>
         <div class="logoName">Sign-in</div>
-        <div class="inputs">
+        <div [formGroup]="loginForm" class="inputs">
             <label for="role">Select Role</label>
-            <select id="role" name="role">
-                <option value="student">Student</option>
-                <option value="admin">Admin</option>
-                <option value="professor">Professor</option>
+            <select id="role" name="role" formControlName="role">
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
             </select>
-            <label>Email</label>
-            <input type="text" placeholder="Enter your email">
-            <label>Password</label>
-            <input type="password" placeholder="Maximum 6 char">
-            <button>Sign In</button>
-        </div>
+          
+            <label for="email">Email</label>
+            <input id="email" type="text" placeholder="Enter your email" formControlName="email">
+          
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Maximum 6 char" formControlName="password">
+          
+            <button [disabled]="!loginForm.valid" (click)="onSubmit()">Sign In</button>
+          </div>
+          
     </div>
 </div>
 <div class="forgot-password">

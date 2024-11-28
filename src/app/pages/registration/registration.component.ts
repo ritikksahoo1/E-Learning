@@ -1,19 +1,36 @@
 import { Component, HostListener, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { ApiService, RegisterDetails } from '../../shared/api.service';
 
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ReactiveFormsModule],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
-  
+
 })
 export class RegistrationComponent implements AfterViewInit {
   private currentSlide: number = 0;
   private slides!: NodeListOf<HTMLElement>; // Use definite assignment assertion
   private totalSlides: number = 0; // Initialize to zero
+
+  registrationForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private apiService: ApiService) {
+    this.registrationForm = this.fb.group({
+      role: ['student', Validators.required], // Default to 'student'
+      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      address: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      course: ['', Validators.required],
+      date: ['', Validators.required],
+    });
+  }
 
   ngAfterViewInit() {
     this.slides = document.querySelectorAll<HTMLElement>('.slide');
@@ -83,5 +100,28 @@ export class RegistrationComponent implements AfterViewInit {
 
   public handlePrev(): void {
     this.prevSlide();
+  }
+
+
+  onSubmit(): void {
+    console.log('Form Submitted:', this.registrationForm.value);
+
+    if (this.registrationForm.valid) {
+      const payload: RegisterDetails = {
+        email: this.registrationForm.value.email,
+        fullName: this.registrationForm.value.fullName,
+        password: this.registrationForm.value.password,
+        date: this.registrationForm.value.date,
+        address: this.registrationForm.value.address,
+        course: this.registrationForm.value.course,
+        phone: this.registrationForm.value.phone,
+        role: this.registrationForm.value.role,
+      }
+      this.apiService.register(payload).subscribe(response => {
+        console.log(response);
+      }, err => { console.log("Error occurred ", err) });
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }

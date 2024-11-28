@@ -49,23 +49,55 @@
   
     <!-- Registration Form -->
     <div class="form__container">
-      <h2>STUDENT REGISTRATION PAGE</h2>
-      <form id="registrationForm">
-        <label for="role">Select Role</label>
-        <select id="role" name="role" required>
-            <option value="student">Student</option>
-            <option value="admin">Admin</option>
-            <option value="professor">Professor</option>
-        </select>
-        <input type="text" id="fullname" placeholder="Full Name" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <input type="text" id="address" placeholder="Address" required />
-        <input type="email" id="email" placeholder="Email ID" required />
-        <input type="tel" id="phone" placeholder="Phone No" required />
-        <input type="text" id="course" placeholder="College" required />
-        <input type="date" id="date" required />
-        <input type="submit" value="Submit" />
+      <h2>REGISTRATION PAGE</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" id="registrationForm">
+  
+      
+        <input
+          type="text"
+          id="fullname"
+          placeholder="Full Name"
+          formControlName="fullName"
+        />
+      
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      
+        <input
+          type="text"
+          id="address"
+          placeholder="Address"
+          formControlName="address"
+        />
+      
+        <input
+          type="email"
+          id="email"
+          placeholder="Email ID"
+          formControlName="email"
+        />
+      
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone No"
+          formControlName="phone"
+        />
+      
+        <input
+          type="text"
+          id="course"
+          placeholder="course"
+          formControlName="course"
+        />
+      
+        <input type="submit" value="Submit"  />
       </form>
+      
     </div>
   
     <!-- Registration Form Section -->

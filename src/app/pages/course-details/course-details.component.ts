@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { ApiService } from '../../shared/api.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
-  imports: [CommonModule, FormsModule], 
+  imports: [CommonModule, FormsModule,ReactiveFormsModule], 
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css'] 
 })
-export class CourseDetailsComponent {
+export class CourseDetailsComponent implements OnDestroy {
   
   topics = [
     {
@@ -74,7 +75,7 @@ export class CourseDetailsComponent {
   ];
   searchTerm: string = '';
   
-  courseList = [];
+  courseList:any[] = [];
   
   courses = [
     {
@@ -847,14 +848,31 @@ export class CourseDetailsComponent {
   ];
   progress: number[] = [0, 0, 0, 0, 0];
   selectedCourse: any = null;
-
-  constructor(private router: Router, private service: ApiService) { }
+  searchForm: FormGroup;
+  searchFormSubscription: Subscription | undefined;
+  constructor(private router: Router, private service: ApiService, private fb: FormBuilder) { 
+    this.courseList = this.courses;
+    this.searchForm = this.fb.group({
+      search: ['']
+    });
+  }
 
   ngOnInit(){
     this.service.getCourses().subscribe((res:any) =>{
       this.courseList = res;
     },err =>{
       console.log("Error while getting course");
+    });
+
+    this.searchFormSubscription = this.searchForm.get('search')?.valueChanges.subscribe(searchValue =>{
+      console.log(searchValue);
+      if(searchValue && searchValue!=''){
+        this.courses =this.courseList?.filter(data => 
+          data?.title?.toLowerCase()?.includes(searchValue?.toLowerCase())
+        );
+      } else{
+        this.courses = this.courseList;
+      }
     })
   }
 
@@ -926,6 +944,15 @@ export class CourseDetailsComponent {
 
   navigateToFeedback() {
     this.router.navigate(['/course-feedback']);
+  }
+
+  ngOnDestroy(){
+    if(this.searchFormSubscription){
+      console.log("Subscription unsubscribed");
+      this.searchFormSubscription.unsubscribe();
+    }
+    console.log("Subscription unsubscribed");
+
   }
 
   }

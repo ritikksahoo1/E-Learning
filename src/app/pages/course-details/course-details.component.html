@@ -11,7 +11,10 @@
 </section>
 <div class="course-page">
   <h1 class="page-title">Explore Our Courses</h1>
-  <input type="text" class="search-bar" placeholder="Search for a course..." [(ngModel)]="searchTerm" />
+
+  <form action="" [formGroup]="searchForm">
+    <input type="text" formControlName="search" class="search-bar" placeholder="Search for a course..." />
+  </form>
 
   <!-- Course Cards -->
   <div class="courses-container">

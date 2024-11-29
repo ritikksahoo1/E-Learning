@@ -26,11 +26,6 @@
         <div class="logo"></div>
         <div class="logoName">Sign-in</div>
         <div [formGroup]="loginForm" class="inputs">
-            <label for="role">Select Role</label>
-            <select id="role" name="role" formControlName="role">
-              <option value="student">Student</option>
-              <option value="admin">Admin</option>
-            </select>
           
             <label for="email">Email</label>
             <input id="email" type="text" placeholder="Enter your email" formControlName="email">
@@ -46,16 +41,8 @@
 <div class="forgot-password">
     <h2>Forgot Your Password?</h2>
     <p>Enter your registered email below, and we’ll send you instructions to reset your password.</p>
-    <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPassword()">
-        <input 
-          type="email" 
-          formControlName="email" 
-          placeholder="Enter your registered email" 
-          [class.invalid]="forgotPasswordForm.get('email')?.invalid && forgotPasswordForm.get('email')?.touched"
-        />
-        
-        <button type="submit" [disabled]="forgotPasswordForm.invalid">Submit</button>
-      </form>
+    <input type="email" placeholder="Enter your registered email" />
+    <button>Submit</button>
 </div>
 
 <footer class="unique-footer">

@@ -58,9 +58,16 @@
       <div class="forgot-password">
         <h2>Forgot Your Password?</h2>
         <p>Enter your registered email below, and we’ll send you instructions to reset your password.</p>
-        <input type="email" placeholder="Enter your registered email" />
-        <button>Submit</button>
+        <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSendPassword()">
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Enter your registered email"
+          />
+          <button type="submit" [disabled]="forgotPasswordForm.invalid">Submit</button>
+        </form>
       </div>
+      
       
 <footer class="unique-footer">
     <div class="footer-container">

@@ -7,6 +7,9 @@ import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  sendOtp(arg0: { email: any; }) {
+    throw new Error('Method not implemented.');
+  }
   api_url: string = 'http://localhost:8080';
   token=signal('user')
   constructor(private http: HttpClient) { }

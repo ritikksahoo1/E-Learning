@@ -87,7 +87,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '3 months',
       author: 'John Doe',
-      
+      pdfPath: '/images/webtech.pdf',
       description: 'Learn how to build websites and web applications using HTML, CSS, and JavaScript.',
       topics: [
         'Introduction to HTML & CSS',
@@ -161,6 +161,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Jane Smith',
+      pdfPath: '/images/Datasci.pdf',
       description: 'Data Science is a multidisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.',
       topics: [
         'Introduction to Data Science',
@@ -227,6 +228,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'John Doe',
+      pdfPath: '/images/MobileApp.pdf',
       description: 'Learn how to build mobile applications for iOS and Android platforms using tools like React Native, Flutter, and native development frameworks.',
       topics: [
         'Introduction to Mobile App Development',
@@ -290,6 +292,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '5 months',
       author: 'Alice Johnson',
+      pdfPath: '/images/cloud.pdf',
       description: 'Cloud Computing enables businesses to use remote servers to store, manage, and process data, rather than using local servers or personal computers.',
       topics: [
         'Introduction to Cloud Computing',
@@ -354,6 +357,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Michael Brown',
+      pdfPath: '/images/AIML.pdf',
       description: 'AI & Machine Learning focus on creating intelligent systems that can learn, adapt, and improve from experience without explicit programming.',
       topics: [
         'Introduction to AI and ML',
@@ -417,6 +421,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Emma Wilson',
+      pdfPath: '/images/cybersecurity.pdf',
       description: 'Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks aimed at accessing, changing, or destroying sensitive information.',
       topics: [
         'Introduction to Cybersecurity',
@@ -481,6 +486,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'John Doe',
+      pdfPath: '/images/Blockchain.pdf',
       description: 'Blockchain Payments focuses on utilizing blockchain technology for faster, more secure, and transparent payment systems, reducing fraud and transaction times.',
       topics: [
         'Introduction to Blockchain Technology',
@@ -545,6 +551,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Jane Smith',
+      pdfPath: '/images/UiUx.pdf',
       description: 'UI/UX Design focuses on creating seamless user experiences through the design of interactive interfaces. This course covers wireframing, prototyping, and design principles to help build intuitive digital products.',
       topics: [
         'Introduction to UI/UX Design',
@@ -607,6 +614,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Alice Johnson',
+      pdfPath: '/images/Devops.pdf',
       description: 'DevOps Engineering involves automating and optimizing the processes of software development and IT operations. This course covers continuous integration, continuous delivery, and the tools required to create a DevOps pipeline.',
       topics: [
         'Introduction to DevOps and its Principles',
@@ -670,6 +678,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'David Brown',
+      pdfPath: '/images/GameDev.pdf',
       description: 'Game Development focuses on the process of creating video games. This course covers the fundamentals of game mechanics, design, and development using various game engines.',
       topics: [
         'Introduction to Game Development and Game Engines',
@@ -733,6 +742,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Dr. Alan Turing',
+      pdfPath: '/images/Figma.pdf',
       description: 'Figma is a powerful tool for UI/UX design and prototyping. This course teaches how to create responsive, interactive prototypes, and collaborate with teams in real time.',
       topics: [
         'Introduction to Figma and Interface Design',
@@ -793,6 +803,7 @@ export class CourseDetailsComponent implements OnDestroy {
       availability: 'Available',
       duration: '4 months',
       author: 'Dr. Ada Lovelace',
+      pdfPath: '/images/AIDS.pdf',
       description: 'This course provides an in-depth understanding of Artificial Intelligence and Data Science, covering foundational principles, machine learning algorithms, data analysis, and AI applications.',
       topics: [
         'Introduction to Artificial Intelligence and Data Science',
@@ -930,7 +941,7 @@ export class CourseDetailsComponent implements OnDestroy {
     course.showEnroll = false;
     this.showOverlay(course);  // Show overlay after successful enrollment
     console.log(course)
-    this.service.enrolled(course.id,"user@gmail.com").subscribe(res=>{
+    this.service.enrolled(course.id,"").subscribe(res=>{
       console.log("Enrolled successfully");
     }, err => {
       console.log(" Error occurred while enroll process");
@@ -941,7 +952,7 @@ export class CourseDetailsComponent implements OnDestroy {
     this.service.updateSelectedCourse(this.selectedCourse);
     this.router.navigate(['/course-view']);
   }
-
+ 
   navigateToFeedback() {
     this.router.navigate(['/course-feedback']);
   }

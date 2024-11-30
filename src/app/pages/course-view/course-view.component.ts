@@ -68,7 +68,13 @@ export class CourseViewComponent implements OnInit {
       }
     }, 200); 
   }
-
+  downloadResource(pdfPath: string): void {
+    const link = document.createElement('a');
+    link.href = pdfPath;
+    link.download = pdfPath.split('/').pop() || 'resource.pdf';
+    link.click();
+  }
+  
   selectRating(rating: number): void {
     this.selectedRating = rating;
     this.isFeedbackVisible = true;

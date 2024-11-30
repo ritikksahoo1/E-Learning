@@ -35,7 +35,7 @@ export class LoginComponent {
       };
       this.apiService.login(payload).subscribe((response: any) => {
         console.log(response);
-        this.apiService.token.set(response)
+        this.apiService.token.set(response.token)
       }, err => { console.log("Error occurred while fetching", err) });
     } else {
       console.log('Form is invalid');

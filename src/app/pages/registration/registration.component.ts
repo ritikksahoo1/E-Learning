@@ -1,13 +1,14 @@
 import { Component, HostListener, AfterViewInit, signal } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { ApiService, RegisterDetails } from '../../shared/api.service';
 
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 
@@ -26,7 +27,7 @@ export class RegistrationComponent implements AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required], Validators.pattern('^[0-9]{10}$')],
       course: ['', Validators.required],
       date: ['', ],
       otp: [''],
@@ -108,23 +109,23 @@ export class RegistrationComponent implements AfterViewInit {
     console.log('Form Submitted:', this.registrationForm.value);
 
     if (this.registrationForm.valid) {
-      // const payload: RegisterDetails = {
-      //   email: this.registrationForm.value.email,
-      //   fullName: this.registrationForm.value.fullName,
-      //   password: this.registrationForm.value.password,
-      //   date: this.registrationForm.value.date,
-      //   address: this.registrationForm.value.address,
-      //   course: this.registrationForm.value.course,
-      //   phone: this.registrationForm.value.phone,
-      //   role: this.registrationForm.value.role,
-      // }
-      // this.apiService.register(payload).subscribe(response => {
-      //   console.log(response);
+      const payload: RegisterDetails = {
+        email: this.registrationForm.value.email,
+         fullName: this.registrationForm.value.fullName,
+         password: this.registrationForm.value.password,
+         date: this.registrationForm.value.date,
+         address: this.registrationForm.value.address,
+         course: this.registrationForm.value.course,
+         phone: this.registrationForm.value.phone,
+        role: this.registrationForm.value.role,
+       }
+       this.apiService.register(payload).subscribe(response => {
+         console.log(response);
         this.showOtpSection.set(true);
-      // }, err => { 
-      //   console.log("Error occurred ", err);
-      //   this.showOtpSection.set(false);
-      // });
+       }, err => { 
+         console.log("Error occurred ", err);
+         this.showOtpSection.set(true);
+       });
     } else {
       console.error('Form is invalid');
     }
@@ -133,7 +134,7 @@ export class RegistrationComponent implements AfterViewInit {
   verifyOtp() {
     const email = this.registrationForm.value.email;
     const otp = this.registrationForm.value.otp;
-    if (otp && otp !='') { // Replace with actual OTP logic
+    if (otp && otp !='') {
       const payload = {
         email: email,
         otp: otp

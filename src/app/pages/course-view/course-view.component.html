@@ -63,10 +63,15 @@
           </div>
         </div>
       </div>
-
+      <div class="download-section">
+        <button class="download-button" *ngIf="course_info?.pdfPath" (click)="downloadResource(course_info?.pdfPath)">
+          Download Resources
+        </button>
+      </div>
       <div class="quiz-container">
         <button class="quiz-button" (click)="navigateToQuiz(course_info)">Take Quiz</button>
       </div>
+      
       
       
       

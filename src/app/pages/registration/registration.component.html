@@ -16,7 +16,7 @@
             <div class="description">Description for Image 3</div>
         </div>
         <div class="slide">
-            <img src="https://media.licdn.com/dms/image/v2/D5612AQFFNnSIjBBSyA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1724153872794?e=2147483647&v=beta&t=r4AbOkWLH9WekXz4zYBw2Pi6Pjvm_Znelb4fw4IVzaU" alt="Image 4">
+            <img src="https://www.shutterstock.com/image-photo/dedicated-smiling-black-male-student-600nw-2498245213.jpg" alt="Image 4">
             <div class="caption">This is the caption for Image 4</div>
             <div class="description">Description for Image 4</div>
         </div>
@@ -47,53 +47,73 @@
       </div>
     </div>
   
-    <!-- Registration Form -->
-    <div class="form__container">
-      <h2>REGISTRATION PAGE</h2>
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" id="registrationForm">
-  
-      
-        <input
-          type="text"
-          id="fullname"
-          placeholder="Full Name"
-          formControlName="fullName"
-        />
-      
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          formControlName="password"
-        />
-      
-        <input
-          type="text"
-          id="address"
-          placeholder="Address"
-          formControlName="address"
-        />
-      
-        <input
-          type="email"
-          id="email"
-          placeholder="Email ID"
-          formControlName="email"
-        />
-      
-        <input
-          type="tel"
-          id="phone"
-          placeholder="Phone No"
-          formControlName="phone"
-        />
-      
-        <input
-          type="text"
-          id="course"
-          placeholder="course"
-          formControlName="course"
-        />
+   <!-- Registration Form -->
+<div class="form__container">
+  <h2>REGISTRATION PAGE</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" id="registrationForm">
+
+    <input
+      type="text"
+      id="fullname"
+      placeholder="Full Name"
+      formControlName="fullName"
+    />
+    <div *ngIf="registrationForm.get('fullName')?.touched && registrationForm.get('fullName')?.invalid">
+      <small class="error">Please fill in the full name.</small>
+    </div>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <div *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.invalid">
+      <small class="error">
+        Password is required and should be at least 6 characters.
+      </small>
+    </div>
+
+    <input
+      type="text"
+      id="address"
+      placeholder="Address"
+      formControlName="address"
+    />
+    <div *ngIf="registrationForm.get('address')?.touched && registrationForm.get('address')?.invalid">
+      <small class="error">Please fill in the address.</small>
+    </div>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email ID"
+      formControlName="email"
+    />
+    <div *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid">
+      <small class="error">Please enter a valid email.</small>
+    </div>
+
+    <input
+      type="tel"
+      id="phone"
+      placeholder="Phone No"
+      formControlName="phone"
+    />
+    <div *ngIf="registrationForm.get('phone')?.touched && registrationForm.get('phone')?.invalid">
+      <small class="error">Please enter a valid phone number (10 digits).</small>
+    </div>
+
+    <input
+      type="text"
+      id="course"
+      placeholder="Course"
+      formControlName="course"
+    />
+    <div *ngIf="registrationForm.get('course')?.touched && registrationForm.get('course')?.invalid">
+      <small class="error">Please select a course.</small>
+    </div>
+
         @if (showOtpSection()) {
           <div class="otp__container">
             <p>Please enter the OTP sent to your email to verify your account:</p>

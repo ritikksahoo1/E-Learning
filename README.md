@@ -1,6 +1,6 @@
 # E-Learning System 📚
 
-Welcome to the **E-Learning System** project! This platform allows users to register, explore courses, and enhance their learning experience with interactive features. With roles for **Admin**, **Professor**, and **User**, this system supports course enrollment, feedback, quizzes, and more.
+Welcome to the **E-Learning System** project! This platform allows users to register, explore courses, and enhance their learning experience with interactive features. With roles for **Admin** and **User**, this system supports course enrollment, feedback, quizzes, and more.
 
 ## 🚀 Features
 

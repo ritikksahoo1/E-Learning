@@ -113,20 +113,27 @@
     <div *ngIf="registrationForm.get('course')?.touched && registrationForm.get('course')?.invalid">
       <small class="error">Please select a course.</small>
     </div>
+    <input type="submit" value="Submit"  />
 
         @if (showOtpSection()) {
           <div class="otp__container">
             <p>Please enter the OTP sent to your email to verify your account:</p>
             <input type="text" id="otp" placeholder="Enter OTP" formControlName="otp" />
-            <button (click)="verifyOtp()">Verify</button>
+            <button type="button" (click)="verifyOtp()">Verify</button>
           </div>
-        }
-       
-        <input type="submit" value="Submit"  />
-      </form>
-      
+        <div class="registration-message">
+          <p>
+            Registration successful! Verify your account and 
+            <span class="animated-text">
+              Click here to login 
+              <span class="emoji">⬇️</span>
+            </span>
+          </p>
+          <button class="button-container" (click)="navigateToLogin()">Login</button>
+        </div>
+        }    
+      </form> 
     </div>
-  
     <!-- Registration Form Section -->
 <section class="container">
     <h2>College Connect</h2>

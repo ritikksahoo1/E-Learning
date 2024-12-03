@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Import FormsModule for two-way binding
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-course-feedback',
   standalone: true,
-  imports: [FormsModule,CommonModule],  // Use the FormsModule directly here for form functionalities
+  imports: [FormsModule,CommonModule],
   templateUrl: './course-feedback.component.html',
   styleUrls: ['./course-feedback.component.css']
 })
 export class CourseFeedbackComponent {
-  // Feedback form model
   feedback = {
     courseName: '',
     rating: 0,
@@ -18,8 +17,6 @@ export class CourseFeedbackComponent {
   };
 
   feedbackSubmitted = false;
-
-  // Method to handle form submission
   submitFeedback() {
     if (this.feedback.rating && this.feedback.comments) {
       console.log('Feedback submitted:', this.feedback);
